@@ -1,6 +1,11 @@
 package com.c0de_h0ng.myapplication.presentation
 
-import androidx.lifecycle.ViewModel
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import com.c0de_h0ng.myapplication.common.Resource
+import com.c0de_h0ng.myapplication.data.remote.dto.toUserList
+import com.c0de_h0ng.myapplication.domain.model.User
 import com.c0de_h0ng.myapplication.domain.usercase.GetUseCase
 
 /**
@@ -8,9 +13,29 @@ import com.c0de_h0ng.myapplication.domain.usercase.GetUseCase
  */
 class MainViewModel constructor(
     private val getUseCase: GetUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
-//    private val _userList = MediatorLiveData<List<User>>()
-//    val
+    private val _userList = MediatorLiveData<List<User>>()
+    val userList: LiveData<List<User>>
+        get() = _userList
+
+    private val userListResultObserve = getUseCase.observe()
+
+    fun getUserListResult(searchWord: String) {
+        this(getUseCase(searchWord))
+        _userList.addSource(userListResultObserve) {
+            when (it) {
+                is Resource.Success -> {
+                    Log.d("Resource >>> ", "Success")
+                    val user = userListResultObserve.value?.data?.toUserList()
+                    _userList.value = user
+                }
+                is Resource.Error -> {
+                    Log.d("Resource >>> ", "Fail")
+                }
+            }
+        }
+
+    }
 
 }
