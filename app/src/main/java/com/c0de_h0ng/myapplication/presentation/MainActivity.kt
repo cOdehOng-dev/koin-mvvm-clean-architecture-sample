@@ -20,12 +20,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     private fun observeViewModel() {
-        viewModel.userList.observe(this) {
-            binding.run {
-                vm = viewModel
-                userListAdapter = UserListAdapter()
+        with(viewModel) {
+            userList.observe(this@MainActivity) {
+                binding.run {
+                    vm = this@with
+                    userListAdapter = UserListAdapter()
+                }
+            }
+
+            isLoadingObservable.observe(this@MainActivity) {
+                when {
+                    it -> showLoadingDialog()
+                    else -> hideLoadingDialog()
+                }
             }
         }
+
     }
 
 }

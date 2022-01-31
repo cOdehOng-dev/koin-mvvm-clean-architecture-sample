@@ -29,7 +29,6 @@ class MainViewModel constructor(
             hideLoading()
             when (it) {
                 is Resource.Success -> {
-                    Log.d("Resource >>> ", "Success")
                     val user = userListResultObserve.value?.data?.toUserList()
                     _userList.value = user
                 }
