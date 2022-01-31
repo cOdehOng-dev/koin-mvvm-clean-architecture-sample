@@ -31,17 +31,17 @@ object AppModule {
 
     val retrofitModule = module {
         single {
-            val interceptor = HttpLoggingInterceptor(PrettyHttpLogging())
-            interceptor.level = if (BuildConfig.DEBUG) {
-                HttpLoggingInterceptor.Level.BODY
-            } else {
-                HttpLoggingInterceptor.Level.NONE
-            }
             OkHttpClient.Builder()
                 .connectTimeout(Constants.CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(Constants.WRITE_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(Constants.READ_TIMEOUT, TimeUnit.SECONDS)
-                .addInterceptor(interceptor)
+                .addNetworkInterceptor(HttpLoggingInterceptor(PrettyHttpLogging()).apply {
+                    level = if (BuildConfig.DEBUG) {
+                        HttpLoggingInterceptor.Level.BODY
+                    } else {
+                        HttpLoggingInterceptor.Level.NONE
+                    }
+                })
                 .build()
         }
 

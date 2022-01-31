@@ -7,7 +7,6 @@ import com.c0de_h0ng.myapplication.data.local.BookmarkUserDto
 import com.c0de_h0ng.myapplication.domain.repository.SampleRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by c0de_h0ng on 2022/01/31.
@@ -18,14 +17,7 @@ class GetBookmarkUserListUseCase constructor(
 
     operator fun invoke(): Disposable {
         return repository.getBookmarkUserList()
-            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe {
-                Log.d("Loading ", "start")
-            }
-            .doOnTerminate {
-                Log.d("Loading ", "finish")
-            }
             .subscribe(
                 {
                     Log.d("Result >>> ", "Success")
