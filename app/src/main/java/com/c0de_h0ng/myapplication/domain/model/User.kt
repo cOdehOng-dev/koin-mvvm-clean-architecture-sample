@@ -6,6 +6,7 @@ package com.c0de_h0ng.myapplication.domain.model
 data class User(
     val id: Int,
     val login: String,
+    val profileUrl: String,
     val htmlUrl: String,
     val reposUrl: String
 )

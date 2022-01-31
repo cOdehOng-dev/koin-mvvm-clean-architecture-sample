@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.c0de_h0ng.myapplication.common.Resource
+import com.c0de_h0ng.myapplication.common.base.BaseViewModel
 import com.c0de_h0ng.myapplication.data.remote.dto.toUserList
 import com.c0de_h0ng.myapplication.domain.model.User
 import com.c0de_h0ng.myapplication.domain.usercase.GetUseCase
@@ -22,8 +23,10 @@ class MainViewModel constructor(
     private val userListResultObserve = getUseCase.observe()
 
     fun getUserListResult(searchWord: String) {
+        showLoading()
         this(getUseCase(searchWord))
         _userList.addSource(userListResultObserve) {
+            hideLoading()
             when (it) {
                 is Resource.Success -> {
                     Log.d("Resource >>> ", "Success")
@@ -35,7 +38,6 @@ class MainViewModel constructor(
                 }
             }
         }
-
     }
 
 }

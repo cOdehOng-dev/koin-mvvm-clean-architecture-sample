@@ -1,7 +1,9 @@
 package com.c0de_h0ng.myapplication.common
 
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.c0de_h0ng.myapplication.common.base.BaseListAdapter
 
 /**
@@ -9,10 +11,22 @@ import com.c0de_h0ng.myapplication.common.base.BaseListAdapter
  */
 object BindingAdapter {
 
-    @BindingAdapter(value = ["recycler_view_adapter", "touch"])
+    @BindingAdapter(value = ["recycler_view_adapter", "list_data", "touch"], requireAll = false)
     @JvmStatic
-    fun bindRecyclerViewAdapter(view: RecyclerView, listAdapter: BaseListAdapter<*>?, recyclerTouchListener: RecyclerTouchListener?) {
-        listAdapter?.let { view.adapter = it }
+    fun bindRecyclerViewAdapter(view: RecyclerView, listAdapter: BaseListAdapter<*>?, list: List<Nothing>?, recyclerTouchListener: RecyclerTouchListener?) {
+        listAdapter?.let { adapter ->
+            view.adapter = adapter
+            adapter.addAll(list)
+        }
         recyclerTouchListener?.let { view.addOnItemTouchListener(RecyclerItemListener(it)) }
+    }
+
+    @BindingAdapter("img_url")
+    @JvmStatic
+    fun bindImageUrl(imageView: ImageView, url: String?) {
+        Glide.with(imageView.context)
+            .load(url)
+            .circleCrop()
+            .into(imageView)
     }
 }

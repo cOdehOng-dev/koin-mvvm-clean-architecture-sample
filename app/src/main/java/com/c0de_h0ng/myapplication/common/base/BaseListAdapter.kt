@@ -20,11 +20,9 @@ abstract class BaseListAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T, *>>()
         addAll(data)
     }
 
-
     fun add(data: T) {
         insert(data, itemList.size)
     }
-
 
     fun addAll(data: List<T>?) {
         if (data == null) {

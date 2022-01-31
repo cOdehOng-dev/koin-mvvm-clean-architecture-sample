@@ -1,4 +1,4 @@
-package com.c0de_h0ng.myapplication.presentation
+package com.c0de_h0ng.myapplication.common.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,6 +17,14 @@ abstract class BaseViewModel : ViewModel() {
 
     val isLoadingObservable: LiveData<Boolean>
         get() = _isLoadingObservable
+
+    fun showLoading() {
+        _isLoadingObservable.value = true
+    }
+
+    fun hideLoading() {
+        _isLoadingObservable.value = false
+    }
 
     private val disposable = CompositeDisposable()
 

@@ -21,6 +21,7 @@ fun UserDto.toUserList(): List<User> {
         User(
             id = it.id,
             login = it.login,
+            profileUrl = it.avatarUrl,
             htmlUrl = it.htmlUrl,
             reposUrl = it.reposUrl
         )
