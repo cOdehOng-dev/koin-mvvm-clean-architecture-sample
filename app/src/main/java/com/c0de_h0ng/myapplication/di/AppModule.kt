@@ -12,7 +12,7 @@ import com.c0de_h0ng.myapplication.data.remote.GitHubApi
 import com.c0de_h0ng.myapplication.data.repository.SampleRepositoryImpl
 import com.c0de_h0ng.myapplication.domain.repository.SampleRepository
 import com.c0de_h0ng.myapplication.domain.usecase.GetBookmarkUserListUseCase
-import com.c0de_h0ng.myapplication.domain.usecase.GetUseCase
+import com.c0de_h0ng.myapplication.domain.usecase.GetUserListUseCase
 import com.c0de_h0ng.myapplication.presentation.MainViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -81,7 +81,7 @@ object AppModule {
     }
 
     val useCaseModule = module {
-        single { GetUseCase(get()) }
+        single { GetUserListUseCase(get()) }
         single { GetBookmarkUserListUseCase(get()) }
     }
 

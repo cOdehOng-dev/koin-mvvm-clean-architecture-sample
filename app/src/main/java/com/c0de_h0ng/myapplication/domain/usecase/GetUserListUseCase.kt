@@ -3,21 +3,21 @@ package com.c0de_h0ng.myapplication.domain.usecase
 import android.util.Log
 import com.c0de_h0ng.myapplication.common.Resource
 import com.c0de_h0ng.myapplication.common.base.BaseUseCase
-import com.c0de_h0ng.myapplication.data.local.BookmarkUserDto
+import com.c0de_h0ng.myapplication.data.remote.dto.UserDto
 import com.c0de_h0ng.myapplication.domain.repository.SampleRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 /**
- * Created by c0de_h0ng on 2022/01/31.
+ * Created by c0de_h0ng on 2022/01/30.
  */
-class GetBookmarkUserListUseCase constructor(
+class GetUserListUseCase constructor(
     private val repository: SampleRepository
-) : BaseUseCase<List<BookmarkUserDto>>() {
+) : BaseUseCase<UserDto>() {
 
-    operator fun invoke(): Disposable {
-        return repository.getBookmarkUserList()
+    operator fun invoke(searchWord: String): Disposable {
+        return repository.getUserList(searchWord)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
@@ -36,4 +36,5 @@ class GetBookmarkUserListUseCase constructor(
                 }
             )
     }
+
 }

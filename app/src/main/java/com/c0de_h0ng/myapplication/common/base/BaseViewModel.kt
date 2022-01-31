@@ -11,6 +11,8 @@ import io.reactivex.disposables.Disposable
  */
 abstract class BaseViewModel : ViewModel() {
 
+    private val disposable = CompositeDisposable()
+
     private val _isLoadingObservable = MutableLiveData<Boolean>().apply {
         value = false
     }
@@ -26,7 +28,6 @@ abstract class BaseViewModel : ViewModel() {
         _isLoadingObservable.value = false
     }
 
-    private val disposable = CompositeDisposable()
 
     operator fun invoke(disposable: Disposable) {
         this.disposable.add(disposable)

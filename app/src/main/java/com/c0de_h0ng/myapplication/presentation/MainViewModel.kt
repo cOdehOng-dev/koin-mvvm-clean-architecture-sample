@@ -9,13 +9,13 @@ import com.c0de_h0ng.myapplication.data.local.BookmarkUserDto
 import com.c0de_h0ng.myapplication.data.remote.dto.toUserList
 import com.c0de_h0ng.myapplication.domain.model.User
 import com.c0de_h0ng.myapplication.domain.usecase.GetBookmarkUserListUseCase
-import com.c0de_h0ng.myapplication.domain.usecase.GetUseCase
+import com.c0de_h0ng.myapplication.domain.usecase.GetUserListUseCase
 
 /**
  * Created by c0de_h0ng on 2022/01/30.
  */
 class MainViewModel constructor(
-    private val getUseCase: GetUseCase,
+    private val getUserListUseCase: GetUserListUseCase,
     private val getBookmarkUserListUseCase: GetBookmarkUserListUseCase
 ) : BaseViewModel() {
 
@@ -27,12 +27,12 @@ class MainViewModel constructor(
     val bookmarkList: LiveData<List<BookmarkUserDto>>
         get() = _bookmarkList
 
-    private val userListResultObserve = getUseCase.observe()
+    private val userListResultObserve = getUserListUseCase.observe()
     private val bookmarkListResultObserve = getBookmarkUserListUseCase.observe()
 
     fun getUserListResult(searchWord: String) {
         showLoading()
-        this(getUseCase(searchWord))
+        this(getUserListUseCase(searchWord))
         _userList.addSource(userListResultObserve) {
             hideLoading()
             when (it) {
@@ -48,7 +48,7 @@ class MainViewModel constructor(
     }
 
     fun getBookmarkUserList() {
-        this(getBookmarkUserListUseCase(""))
+        this(getBookmarkUserListUseCase())
         _bookmarkList.addSource(bookmarkListResultObserve) {
             when (it) {
                 is Resource.Success -> {
