@@ -1,13 +1,18 @@
 package com.c0de_h0ng.myapplication.di
 
+import androidx.room.Room
 import com.c0de_h0ng.myapplication.common.Constants
 import com.c0de_h0ng.myapplication.common.PrettyHttpLogging
+import com.c0de_h0ng.myapplication.data.datasource.SampleLocalDataSource
+import com.c0de_h0ng.myapplication.data.datasource.SampleLocalDataSourceImpl
 import com.c0de_h0ng.myapplication.data.datasource.SampleRemoteDataSource
 import com.c0de_h0ng.myapplication.data.datasource.SampleRemoteDataSourceImpl
+import com.c0de_h0ng.myapplication.data.local.BookmarkDatabase
 import com.c0de_h0ng.myapplication.data.remote.GitHubApi
 import com.c0de_h0ng.myapplication.data.repository.SampleRepositoryImpl
 import com.c0de_h0ng.myapplication.domain.repository.SampleRepository
-import com.c0de_h0ng.myapplication.domain.usercase.GetUseCase
+import com.c0de_h0ng.myapplication.domain.usecase.GetBookmarkUserListUseCase
+import com.c0de_h0ng.myapplication.domain.usecase.GetUseCase
 import com.c0de_h0ng.myapplication.presentation.MainViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,8 +32,10 @@ object AppModule {
     val retrofitModule = module {
         single {
             val interceptor = HttpLoggingInterceptor(PrettyHttpLogging())
-            if (BuildConfig.DEBUG) {
-                interceptor.level = HttpLoggingInterceptor.Level.BODY
+            interceptor.level = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor.Level.BODY
+            } else {
+                HttpLoggingInterceptor.Level.NONE
             }
             OkHttpClient.Builder()
                 .connectTimeout(Constants.CONNECT_TIMEOUT, TimeUnit.SECONDS)
@@ -36,16 +43,6 @@ object AppModule {
                 .readTimeout(Constants.READ_TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
                 .build()
-        }
-
-        single {
-            HttpLoggingInterceptor().apply {
-                level = if (BuildConfig.DEBUG) {
-                    HttpLoggingInterceptor.Level.BODY
-                } else {
-                    HttpLoggingInterceptor.Level.NONE
-                }
-            }
         }
 
         single {
@@ -64,19 +61,31 @@ object AppModule {
 
     val datasourceModule = module {
         single<SampleRemoteDataSource> { SampleRemoteDataSourceImpl(get()) }
+        single<SampleLocalDataSource> { SampleLocalDataSourceImpl(get()) }
     }
 
-    val repositoryModule = module {
-        single<SampleRepository> { SampleRepositoryImpl(get()) }
-    }
-
-    val useCaseModule = module {
+    val localDataModule = module {
+        single { get<BookmarkDatabase>().bookmarkUserDao() }
         single {
-            GetUseCase(get())
+            Room.databaseBuilder(
+                get(),
+                BookmarkDatabase::class.java,
+                "bookmark_user.db"
+            )
+                .build()
         }
     }
 
+    val repositoryModule = module {
+        single<SampleRepository> { SampleRepositoryImpl(get(), get()) }
+    }
+
+    val useCaseModule = module {
+        single { GetUseCase(get()) }
+        single { GetBookmarkUserListUseCase(get()) }
+    }
+
     val viewModelModule = module {
-        viewModel { MainViewModel(get()) }
+        viewModel { MainViewModel(get(), get()) }
     }
 }

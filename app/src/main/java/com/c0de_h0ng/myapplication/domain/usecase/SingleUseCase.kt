@@ -1,4 +1,4 @@
-package com.c0de_h0ng.myapplication.domain.usercase
+package com.c0de_h0ng.myapplication.domain.usecase
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

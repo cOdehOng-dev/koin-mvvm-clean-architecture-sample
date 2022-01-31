@@ -1,4 +1,4 @@
-package com.c0de_h0ng.myapplication.domain.usercase
+package com.c0de_h0ng.myapplication.domain.usecase
 
 import com.c0de_h0ng.myapplication.data.remote.dto.UserDto
 import com.c0de_h0ng.myapplication.domain.repository.SampleRepository

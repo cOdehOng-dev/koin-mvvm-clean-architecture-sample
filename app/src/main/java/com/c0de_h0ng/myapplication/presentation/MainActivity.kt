@@ -1,6 +1,7 @@
 package com.c0de_h0ng.myapplication.presentation
 
 import android.os.Bundle
+import android.util.Log
 import com.c0de_h0ng.myapplication.R
 import com.c0de_h0ng.myapplication.common.base.BaseActivity
 import com.c0de_h0ng.myapplication.databinding.ActivityMainBinding
@@ -17,6 +18,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
         observeViewModel()
         viewModel.getUserListResult("mike")
+        viewModel.getBookmarkUserList()
     }
 
     private fun observeViewModel() {
@@ -26,6 +28,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     vm = this@with
                     userListAdapter = UserListAdapter()
                 }
+            }
+
+            bookmarkList.observe(this@MainActivity) {
+                Log.d("Bookmark size ", it.size.toString())
             }
 
             isLoadingObservable.observe(this@MainActivity) {

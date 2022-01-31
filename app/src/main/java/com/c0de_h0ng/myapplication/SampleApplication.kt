@@ -3,6 +3,7 @@ package com.c0de_h0ng.myapplication
 import android.app.Application
 import com.c0de_h0ng.myapplication.di.*
 import com.c0de_h0ng.myapplication.di.AppModule.datasourceModule
+import com.c0de_h0ng.myapplication.di.AppModule.localDataModule
 import com.c0de_h0ng.myapplication.di.AppModule.repositoryModule
 import com.c0de_h0ng.myapplication.di.AppModule.retrofitModule
 import com.c0de_h0ng.myapplication.di.AppModule.useCaseModule
@@ -19,13 +20,13 @@ class SampleApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@SampleApplication)
-
             modules(
                 retrofitModule,
                 repositoryModule,
                 useCaseModule,
                 viewModelModule,
-                datasourceModule
+                datasourceModule,
+                localDataModule
             )
         }
     }
