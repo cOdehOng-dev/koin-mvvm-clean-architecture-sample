@@ -2,7 +2,7 @@ package com.c0de_h0ng.myapplication.data.local
 
 import androidx.room.*
 import io.reactivex.Completable
-import io.reactivex.Single
+import io.reactivex.Flowable
 
 /**
  * Created by c0de_h0ng on 2022/01/31.
@@ -11,7 +11,7 @@ import io.reactivex.Single
 interface BookmarkUserDao {
 
     @Query("SELECT * FROM tbl_bookmark_user ORDER BY name DESC")
-    fun getBookmarkUserList(): Single<List<BookmarkUserDto>>
+    fun getBookmarkUserList(): Flowable<List<BookmarkUserDto>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(bookmarkUser: BookmarkUserDto): Completable

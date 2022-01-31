@@ -6,6 +6,7 @@ import com.c0de_h0ng.myapplication.data.local.BookmarkUserDto
 import com.c0de_h0ng.myapplication.data.remote.dto.UserDto
 import com.c0de_h0ng.myapplication.domain.repository.SampleRepository
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 
@@ -25,7 +26,7 @@ class SampleRepositoryImpl constructor(
         return localDataSource.insertBookmark(bookmarkUser).subscribeOn(Schedulers.io())
     }
 
-    override fun getBookmarkUserList(): Single<List<BookmarkUserDto>> {
+    override fun getBookmarkUserList(): Flowable<List<BookmarkUserDto>> {
         return localDataSource.getBookmarkUserList().subscribeOn(Schedulers.io())
     }
 
