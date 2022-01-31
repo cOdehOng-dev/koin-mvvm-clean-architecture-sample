@@ -3,7 +3,7 @@ package com.c0de_h0ng.myapplication.presentation
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import com.c0de_h0ng.myapplication.common.Resource
+import com.c0de_h0ng.myapplication.common.CallResult
 import com.c0de_h0ng.myapplication.common.base.BaseViewModel
 import com.c0de_h0ng.myapplication.data.local.BookmarkUserDto
 import com.c0de_h0ng.myapplication.data.remote.dto.toUserList
@@ -31,17 +31,18 @@ class MainViewModel constructor(
     private val bookmarkListResultObserve = getBookmarkUserListUseCase.observe()
 
     fun getUserListResult(searchWord: String) {
-        showLoading()
         this(getUserListUseCase(searchWord))
         _userList.addSource(userListResultObserve) {
-            hideLoading()
             when (it) {
-                is Resource.Success -> {
-                    val user = userListResultObserve.value?.data?.toUserList()
+                is CallResult.Success -> {
+                    val user = it.data?.toUserList()
                     _userList.value = user
                 }
-                is Resource.Error -> {
+                is CallResult.Error -> {
                     Log.d("Resource >>> ", "Fail")
+                }
+                is CallResult.Loading -> {
+                    loadingProgress(it.isLoading)
                 }
             }
         }
@@ -51,12 +52,15 @@ class MainViewModel constructor(
         this(getBookmarkUserListUseCase())
         _bookmarkList.addSource(bookmarkListResultObserve) {
             when (it) {
-                is Resource.Success -> {
-                    val user = bookmarkListResultObserve.value?.data
+                is CallResult.Success -> {
+                    val user = it.data
                     _bookmarkList.value = user
                 }
-                is Resource.Error -> {
+                is CallResult.Error -> {
                     Log.d("Resource >>> ", "Fail")
+                }
+                is CallResult.Loading -> {
+                    loadingProgress(it.isLoading)
                 }
             }
         }
