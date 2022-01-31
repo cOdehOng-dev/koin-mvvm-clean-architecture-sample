@@ -20,5 +20,5 @@ data class BookmarkUserDto(
     val profileUrl: String,
 
     @ColumnInfo(name = "bookmark")
-    var isBookmark: Boolean,
+    var isBookmark: Boolean
 )

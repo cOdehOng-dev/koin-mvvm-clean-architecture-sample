@@ -14,6 +14,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private val viewModel by viewModel<MainViewModel>()
 
+    private val userProfileListViewPager: UserPagerAdapter by lazy {
+        UserPagerAdapter(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observeViewModel()
@@ -27,6 +31,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 binding.run {
                     vm = this@with
                     userListAdapter = UserListAdapter()
+
+                    pagerAdapter = userProfileListViewPager
+                    for (i in it.indices) {
+                        userProfileListViewPager.addFragment(UserProfileFragment.newInstance(it[i]), i)
+                    }
                 }
             }
 
@@ -41,7 +50,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 }
             }
         }
-
     }
 
 }
