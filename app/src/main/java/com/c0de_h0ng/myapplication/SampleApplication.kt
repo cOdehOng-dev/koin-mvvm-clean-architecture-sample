@@ -5,6 +5,7 @@ import com.c0de_h0ng.myapplication.di.*
 import com.c0de_h0ng.myapplication.di.AppModule.datasourceModule
 import com.c0de_h0ng.myapplication.di.AppModule.repositoryModule
 import com.c0de_h0ng.myapplication.di.AppModule.retrofitModule
+import com.c0de_h0ng.myapplication.di.AppModule.useCaseModule
 import com.c0de_h0ng.myapplication.di.AppModule.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin

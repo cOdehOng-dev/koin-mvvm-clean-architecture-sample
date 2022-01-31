@@ -71,7 +71,7 @@ object AppModule {
     }
 
     val useCaseModule = module {
-        factory {
+        single {
             GetUseCase(get())
         }
     }
