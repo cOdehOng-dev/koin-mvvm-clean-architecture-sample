@@ -33,7 +33,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         with(viewModel) {
             userList.observe(this@MainActivity) {
                 binding.run {
-//                    vm = this@with
+                    vm = this@with
 //                    userListAdapter = UserListAdapter()
 
 
@@ -69,6 +69,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         //sliderHandler.postDelayed(sliderRunnable, 4000)
     }
 
-    private val sliderRunnable = Runnable { binding.viewPager.currentItem = binding.viewPager.currentItem + 1 }
+//    private val sliderRunnable = Runnable {
+//        binding.viewPager.currentItem = binding.viewPager.currentItem + 1
+//
+//    }
 
 }

@@ -2,8 +2,8 @@ package com.c0de_h0ng.myapplication.presentation
 
 import android.view.ViewGroup
 import com.c0de_h0ng.myapplication.R
-import com.c0de_h0ng.myapplication.common.base.BaseListAdapter
-import com.c0de_h0ng.myapplication.common.base.BaseViewHolder
+import com.c0de_h0ng.myapplication.common.base.adapter.BaseListAdapter
+import com.c0de_h0ng.myapplication.common.base.adapter.BaseViewHolder
 import com.c0de_h0ng.myapplication.databinding.UserListItemBinding
 import com.c0de_h0ng.myapplication.domain.model.User
 
