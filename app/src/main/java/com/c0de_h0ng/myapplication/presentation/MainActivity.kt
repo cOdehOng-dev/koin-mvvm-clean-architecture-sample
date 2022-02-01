@@ -26,9 +26,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             userList.observe(this@MainActivity) {
                 binding.run {
                     vm = this@with
-//                    userListAdapter = UserListAdapter()
-
-                    viewPager2.setAdapter(InfiniteViewPager2Adapter(it))
+                    userListAdapter = UserListAdapter()
+                    viewPager2.setAdapter(InfiniteViewPagerAdapter(it))
                 }
             }
 

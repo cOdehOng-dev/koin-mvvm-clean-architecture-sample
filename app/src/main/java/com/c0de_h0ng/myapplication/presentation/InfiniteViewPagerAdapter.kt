@@ -10,7 +10,7 @@ import com.c0de_h0ng.myapplication.domain.model.User
 /**
  * Created by c0de_h0ng on 2022/02/01.
  */
-class InfiniteViewPager2Adapter constructor(
+class InfiniteViewPagerAdapter constructor(
     itemListOriginal: List<User>
 ) : BaseInfiniteViewPager2Adapter<User>(itemListOriginal) {
 

@@ -1,4 +1,4 @@
-package com.c0de_h0ng.myapplication.presentation
+package com.c0de_h0ng.myapplication.presentation.customview
 
 import android.content.Context
 import android.util.AttributeSet
@@ -15,7 +15,7 @@ import com.c0de_h0ng.myapplication.R
 /**
  * Created by c0de_h0ng on 2022/02/01.
  */
-class InfiniteViewPager2 @JvmOverloads constructor(
+class InfiniteViewPager @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0,
