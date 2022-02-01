@@ -1,4 +1,4 @@
-# koin-mvvm-clean-sample
+# koin-mvvm-clean-architecture-sample
 
 ## Description
 ```
