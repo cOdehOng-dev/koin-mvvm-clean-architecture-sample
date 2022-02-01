@@ -1,6 +1,8 @@
 package com.c0de_h0ng.myapplication.presentation
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import com.c0de_h0ng.myapplication.R
 import com.c0de_h0ng.myapplication.common.base.BaseActivity
@@ -13,6 +15,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         get() = R.layout.activity_main
 
     private val viewModel by viewModel<MainViewModel>()
+
+    private val sliderHandler = Handler(Looper.getMainLooper())
 
     private val userProfileListViewPager: UserPagerAdapter by lazy {
         UserPagerAdapter(this)
@@ -29,13 +33,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         with(viewModel) {
             userList.observe(this@MainActivity) {
                 binding.run {
-                    vm = this@with
-                    userListAdapter = UserListAdapter()
+//                    vm = this@with
+//                    userListAdapter = UserListAdapter()
 
-                    pagerAdapter = userProfileListViewPager
-                    for (i in it.indices) {
-                        userProfileListViewPager.addFragment(UserProfileFragment.newInstance(it[i]), i)
-                    }
+
+
+                    viewPager2.setAdapter(InfiniteViewPager2Adapter(it))
+
+
                 }
             }
 
@@ -51,5 +56,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
         }
     }
+
+
+
+    override fun onPause() {
+        super.onPause()
+        //sliderHandler.removeCallbacks(sliderRunnable)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //sliderHandler.postDelayed(sliderRunnable, 4000)
+    }
+
+    private val sliderRunnable = Runnable { binding.viewPager.currentItem = binding.viewPager.currentItem + 1 }
 
 }

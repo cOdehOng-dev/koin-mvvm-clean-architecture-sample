@@ -36,7 +36,7 @@ class MainViewModel constructor(
             when (it) {
                 is CallResult.Success -> {
                     val user = it.data?.toUserList()
-                    _userList.value = user
+                    _userList.value = user!!
                 }
                 is CallResult.Error -> {
                     Log.d("Resource >>> ", "Fail")
@@ -54,7 +54,7 @@ class MainViewModel constructor(
             when (it) {
                 is CallResult.Success -> {
                     val user = it.data
-                    _bookmarkList.value = user
+                    _bookmarkList.value = user!!
                 }
                 is CallResult.Error -> {
                     Log.d("Resource >>> ", "Fail")
