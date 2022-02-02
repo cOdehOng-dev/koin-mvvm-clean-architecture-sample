@@ -3,6 +3,7 @@ package com.c0de_h0ng.data.remote.dto
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.c0de_h0ng.domain.model.BookmarkUser
 
 /**
  * Created by c0de_h0ng on 2022/02/02.
@@ -21,4 +22,8 @@ data class BookmarkDto(
 
     @ColumnInfo(name = "bookmark")
     val isBookmark: Boolean
+)
+
+fun BookmarkDto.toBookmark() = BookmarkUser(
+    id, name, profileUrl, isBookmark
 )

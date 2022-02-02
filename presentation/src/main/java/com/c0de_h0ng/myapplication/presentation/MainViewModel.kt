@@ -32,9 +32,9 @@ class MainViewModel constructor(
     val insertBookmark: LiveData<Boolean>
         get() = _insertBookmark
 
-    private val _searchList = MediatorLiveData<List<BookmarkUser>>()
-    val searchList: LiveData<List<BookmarkUser>>
-        get() = _searchList
+    private val _searchUser = MediatorLiveData<BookmarkUser>()
+    val searchUser: LiveData<BookmarkUser>
+        get() = _searchUser
 
 
     private val userListResultObserve = getUserListUseCase.observe()
@@ -98,18 +98,19 @@ class MainViewModel constructor(
 
     fun searchBookmark(search: String) {
         this(searchBookmarkUseCase(search))
-        _searchList.addSource(searchListObserve) {
+        _searchUser.addSource(searchListObserve) {
             when (it) {
                 is CallResult.Success -> {
                     val user = it.data
-                    _searchList.value = user!!
-                    Log.d("SearchBookmarkList", user.count().toString())
+                    _searchUser.value = user!!
+                    Log.d("SearchBookmark User", user.name)
                 }
                 is CallResult.Error -> {
-                    Log.d("Resource >>> ", "Fail")
+                    Log.d("SearchBookmark User", "Fail")
                 }
                 is CallResult.Loading -> {
                     loadingProgress(it.isLoading)
+                    Log.d("SearchBookmark User", "Load")
                 }
             }
         }

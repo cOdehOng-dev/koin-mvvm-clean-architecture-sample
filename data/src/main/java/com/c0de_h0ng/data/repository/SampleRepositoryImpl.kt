@@ -4,6 +4,7 @@ import com.c0de_h0ng.data.datasource.SampleLocalDataSource
 import com.c0de_h0ng.data.datasource.SampleRemoteDataSource
 import com.c0de_h0ng.data.mapper.mapperToBookmark
 import com.c0de_h0ng.data.mapper.toBookmarkEntity
+import com.c0de_h0ng.data.remote.dto.toBookmark
 import com.c0de_h0ng.data.remote.dto.toUserList
 import com.c0de_h0ng.domain.model.BookmarkUser
 import com.c0de_h0ng.domain.model.User
@@ -25,10 +26,13 @@ class SampleRepositoryImpl constructor(
         }
     }
 
-    override fun searchBookmark(searchUser: String): Flowable<List<BookmarkUser>> {
+    override fun searchBookmark(searchUser: String): Flowable<BookmarkUser> {
         return local.searchBookmark(searchUser).flatMap {
-            Flowable.just(mapperToBookmark(it))
+            Flowable.just(it.toBookmark())
         }
+//        return local.searchBookmark(searchUser).flatMap {
+//            Flowable.just(mapperToBookmark(it))
+//        }
     }
 
     override fun insertBookmark(bookmarkUser: BookmarkUser): Completable {

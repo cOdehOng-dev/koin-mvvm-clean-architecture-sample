@@ -52,7 +52,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener 
                     else -> hideLoadingDialog()
                 }
             }
-            searchList.observe(this@MainActivity) {
+            searchUser.observe(this@MainActivity) {
                 hideLoadingDialog()
                 Log.d("Search After Result ", it.toString())
             }

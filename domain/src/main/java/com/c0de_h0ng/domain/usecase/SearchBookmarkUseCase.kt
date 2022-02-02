@@ -10,9 +10,9 @@ import io.reactivex.schedulers.Schedulers
  */
 class SearchBookmarkUseCase constructor(
     private val repository: SampleRepository
-) : UseCase<String, List<BookmarkUser>>() {
+) : UseCase<String, BookmarkUser>() {
 
-    override fun buildUseCaseFlowable(param: String): Flowable<List<BookmarkUser>> {
+    override fun buildUseCaseFlowable(param: String): Flowable<BookmarkUser> {
         return repository.searchBookmark(param).subscribeOn(Schedulers.io())
     }
 }

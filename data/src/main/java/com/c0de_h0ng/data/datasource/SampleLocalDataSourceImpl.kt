@@ -14,6 +14,6 @@ class SampleLocalDataSourceImpl constructor(
 
     override fun insertBookmark(bookmark: BookmarkDto): Completable = bookmarkDao.insert(bookmark)
     override fun getBookmarkUserList(): Flowable<List<BookmarkDto>> = bookmarkDao.getBookmarkUserList()
-    override fun searchBookmark(searchUser: String): Flowable<List<BookmarkDto>> = bookmarkDao.searchBookmark(searchUser)
+    override fun searchBookmark(searchUser: String): Flowable<BookmarkDto> = bookmarkDao.searchBookmark(searchUser)
     override fun deleteBookmark(bookmark: BookmarkDto): Completable = bookmarkDao.delete(bookmark)
 }

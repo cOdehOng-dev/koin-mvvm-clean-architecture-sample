@@ -10,7 +10,7 @@ import io.reactivex.Flowable
 interface SampleLocalDataSource {
 
     fun getBookmarkUserList(): Flowable<List<BookmarkDto>>
-    fun searchBookmark(searchUser: String): Flowable<List<BookmarkDto>>
+    fun searchBookmark(searchUser: String): Flowable<BookmarkDto>
     fun insertBookmark(bookmark: BookmarkDto): Completable
     fun deleteBookmark(bookmark: BookmarkDto): Completable
 }
