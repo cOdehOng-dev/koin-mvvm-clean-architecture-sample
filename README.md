@@ -1,4 +1,4 @@
-# koin-mvvm-clean-sample
+# koin-mvvm-clean-architecture-sample
 
 ## Description
 ```
@@ -11,12 +11,14 @@
 - Repository Pattern
 - Clean Architecture
 - Databinding
+- RxJava
+- Coroutine
+- Flow
 
 ## Library
 - Retrofit
 - Okhttp
 - Glide
-- RxJava
 
 ## Github API
 - [Github API](https://developer.github.com/v3/)
