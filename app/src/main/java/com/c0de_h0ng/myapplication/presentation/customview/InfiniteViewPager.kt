@@ -79,12 +79,11 @@ class InfiniteViewPager @JvmOverloads constructor(
     ) : RecyclerView.OnScrollListener() {
 
         override fun onScrolled(
-            recyclerView: RecyclerView, dx: Int, dy: Int) {
+            recyclerView: RecyclerView, dx: Int, dy: Int
+        ) {
             super.onScrolled(recyclerView, dx, dy)
-            val firstItemVisible
-                    = layoutManager.findFirstVisibleItemPosition()
-            val lastItemVisible
-                    = layoutManager.findLastVisibleItemPosition()
+            val firstItemVisible = layoutManager.findFirstVisibleItemPosition()
+            val lastItemVisible = layoutManager.findLastVisibleItemPosition()
             if (firstItemVisible == (itemCount - 1) && dx > 0) {
                 recyclerView.scrollToPosition(1)
             } else if (lastItemVisible == 0 && dx < 0) {
