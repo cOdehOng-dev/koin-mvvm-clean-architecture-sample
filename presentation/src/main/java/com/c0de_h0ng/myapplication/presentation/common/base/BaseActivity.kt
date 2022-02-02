@@ -1,11 +1,11 @@
-package com.c0de_h0ng.myapplication.common.base
+package com.c0de_h0ng.presentation.presentation.common.base
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.c0de_h0ng.myapplication.common.Constants.PROGRESS_DIALOG_FRAGMENT
+import com.c0de_h0ng.myapplication.presentation.common.Constants.PROGRESS_DIALOG_FRAGMENT
 import com.c0de_h0ng.myapplication.presentation.ProgressDialogFragment
 
 /**

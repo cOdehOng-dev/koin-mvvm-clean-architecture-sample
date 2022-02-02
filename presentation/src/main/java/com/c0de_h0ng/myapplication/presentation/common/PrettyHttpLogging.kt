@@ -1,4 +1,4 @@
-package com.c0de_h0ng.myapplication.common
+package com.c0de_h0ng.presentation.presentation.common
 
 import android.util.Log
 import com.google.gson.GsonBuilder

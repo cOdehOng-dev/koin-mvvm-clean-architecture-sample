@@ -1,9 +1,9 @@
-package com.c0de_h0ng.myapplication.presentation
+package com.c0de_h0ng.presentation.presentation
 
 import android.os.Bundle
 import android.util.Log
 import com.c0de_h0ng.myapplication.R
-import com.c0de_h0ng.myapplication.common.base.BaseActivity
+import com.c0de_h0ng.myapplication.presentation.common.base.BaseActivity
 import com.c0de_h0ng.myapplication.databinding.ActivityMainBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -27,7 +27,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 binding.run {
                     vm = this@with
                     userListAdapter = UserListAdapter()
-                    viewPager2.setAdapter(InfiniteViewPagerAdapter(it))
+                    viewPager2.setAdapter(com.c0de_h0ng.presentation.presentation.InfiniteViewPagerAdapter(it))
                 }
             }
 

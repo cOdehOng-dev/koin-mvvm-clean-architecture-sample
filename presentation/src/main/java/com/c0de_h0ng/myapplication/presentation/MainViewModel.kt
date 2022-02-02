@@ -1,4 +1,4 @@
-package com.c0de_h0ng.myapplication.presentation
+package com.c0de_h0ng.presentation.presentation
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -8,7 +8,7 @@ import com.c0de_h0ng.domain.model.User
 import com.c0de_h0ng.domain.usecase.CallResult
 import com.c0de_h0ng.domain.usecase.GetBookmarkUserListUseCase
 import com.c0de_h0ng.domain.usecase.GetUserListUseCase
-import com.c0de_h0ng.myapplication.common.base.BaseViewModel
+import com.c0de_h0ng.myapplication.presentation.common.base.BaseViewModel
 
 /**
  * Created by c0de_h0ng on 2022/01/30.

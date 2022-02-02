@@ -1,10 +1,10 @@
-package com.c0de_h0ng.myapplication.presentation
+package com.c0de_h0ng.presentation.presentation
 
 import android.view.ViewGroup
 import com.c0de_h0ng.domain.model.User
 import com.c0de_h0ng.myapplication.R
-import com.c0de_h0ng.myapplication.common.base.adapter.BaseInfiniteViewPager2Adapter
-import com.c0de_h0ng.myapplication.common.base.adapter.BaseViewHolder
+import com.c0de_h0ng.myapplication.presentation.common.base.adapter.BaseInfiniteViewPager2Adapter
+import com.c0de_h0ng.myapplication.presentation.common.base.adapter.BaseViewHolder
 import com.c0de_h0ng.myapplication.databinding.UserProfileItemBinding
 
 /**
@@ -14,7 +14,7 @@ class InfiniteViewPagerAdapter constructor(
     itemListOriginal: List<User>
 ) : BaseInfiniteViewPager2Adapter<User>(itemListOriginal) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfiniteViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): com.c0de_h0ng.presentation.presentation.InfiniteViewPagerAdapter.InfiniteViewHolder {
         return InfiniteViewHolder(parent)
     }
 

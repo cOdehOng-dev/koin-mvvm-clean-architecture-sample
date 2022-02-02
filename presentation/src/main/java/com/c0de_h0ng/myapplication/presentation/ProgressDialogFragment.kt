@@ -1,4 +1,4 @@
-package com.c0de_h0ng.myapplication.presentation
+package com.c0de_h0ng.presentation.presentation
 
 import android.app.Dialog
 import android.graphics.Color

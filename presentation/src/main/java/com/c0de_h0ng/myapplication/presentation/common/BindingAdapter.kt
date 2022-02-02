@@ -1,10 +1,10 @@
-package com.c0de_h0ng.myapplication.common
+package com.c0de_h0ng.presentation.presentation.common
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.c0de_h0ng.myapplication.common.base.adapter.BaseListAdapter
+import com.c0de_h0ng.myapplication.presentation.common.base.adapter.BaseListAdapter
 
 /**
  * Created by c0de_h0ng on 2022/01/31.

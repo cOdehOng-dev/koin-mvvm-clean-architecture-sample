@@ -1,4 +1,4 @@
-package com.c0de_h0ng.myapplication.di
+package com.c0de_h0ng.presentation.presentation.di
 
 import androidx.room.Room
 import com.c0de_h0ng.data.datasource.SampleLocalDataSource
@@ -11,8 +11,8 @@ import com.c0de_h0ng.data.repository.SampleRepositoryImpl
 import com.c0de_h0ng.domain.repository.SampleRepository
 import com.c0de_h0ng.domain.usecase.GetBookmarkUserListUseCase
 import com.c0de_h0ng.domain.usecase.GetUserListUseCase
-import com.c0de_h0ng.myapplication.common.Constants
-import com.c0de_h0ng.myapplication.common.PrettyHttpLogging
+import com.c0de_h0ng.myapplication.presentation.common.Constants
+import com.c0de_h0ng.myapplication.presentation.common.PrettyHttpLogging
 import com.c0de_h0ng.myapplication.presentation.MainViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

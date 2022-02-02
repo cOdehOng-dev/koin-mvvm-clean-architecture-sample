@@ -1,4 +1,4 @@
-package com.c0de_h0ng.myapplication.common.base.adapter
+package com.c0de_h0ng.presentation.presentation.common.base.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
