@@ -5,8 +5,8 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.c0de_h0ng.myapplication.presentation.common.Constants.PROGRESS_DIALOG_FRAGMENT
 import com.c0de_h0ng.myapplication.presentation.ProgressDialogFragment
+import com.c0de_h0ng.myapplication.presentation.common.Constants.PROGRESS_DIALOG_FRAGMENT
 
 /**
  * Created by c0de_h0ng on 2022/01/31.
@@ -23,8 +23,10 @@ abstract class BaseActivity<VD : ViewDataBinding> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutRes)
+        bindingProperty()
     }
 
+    abstract fun bindingProperty()
 
     fun showLoadingDialog() {
         if (dialog == null) {

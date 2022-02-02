@@ -1,7 +1,6 @@
 package com.c0de_h0ng.myapplication
 
 import android.app.Application
-import com.c0de_h0ng.myapplication.di.*
 import com.c0de_h0ng.myapplication.presentation.di.AppModule.datasourceModule
 import com.c0de_h0ng.myapplication.presentation.di.AppModule.localDataModule
 import com.c0de_h0ng.myapplication.presentation.di.AppModule.repositoryModule

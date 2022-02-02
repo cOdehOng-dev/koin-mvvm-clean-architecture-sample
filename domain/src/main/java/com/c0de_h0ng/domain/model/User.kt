@@ -14,3 +14,4 @@ data class User(
     val htmlUrl: String,
     val reposUrl: String
 ) : Parcelable
+

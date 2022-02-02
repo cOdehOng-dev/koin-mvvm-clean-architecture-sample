@@ -18,7 +18,7 @@ object BindingAdapter {
             view.adapter = adapter
             adapter.addAll(list)
         }
-        recyclerTouchListener?.let { view.addOnItemTouchListener(RecyclerItemListener(it)) }
+        recyclerTouchListener?.let { view.addOnItemTouchListener(RecyclerItemListener(view, it)) }
     }
 
     @BindingAdapter("img_url")

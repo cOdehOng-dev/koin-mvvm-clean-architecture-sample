@@ -20,6 +20,8 @@ abstract class BaseListAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T, *>>()
         addAll(data)
     }
 
+    fun getList(index: Int) = itemList[index]
+
     fun add(data: T) {
         insert(data, itemList.size)
     }

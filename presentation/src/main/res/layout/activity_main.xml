@@ -6,6 +6,9 @@
     <data>
         <variable name="vm" type="com.c0de_h0ng.myapplication.presentation.MainViewModel" />
         <variable name="userListAdapter" type="com.c0de_h0ng.myapplication.presentation.UserListAdapter" />
+        <variable
+            name="listTouch"
+            type="com.c0de_h0ng.myapplication.presentation.common.RecyclerTouchListener" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -42,7 +45,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 recycler_view_adapter="@{userListAdapter}"
                 list_data="@{vm.userList}"
-                android:visibility="visible"/>
+                touch="@{listTouch}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

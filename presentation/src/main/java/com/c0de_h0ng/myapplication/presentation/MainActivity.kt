@@ -2,17 +2,23 @@ package com.c0de_h0ng.myapplication.presentation
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.c0de_h0ng.myapplication.R
-import com.c0de_h0ng.myapplication.presentation.common.base.BaseActivity
 import com.c0de_h0ng.myapplication.databinding.ActivityMainBinding
+import com.c0de_h0ng.myapplication.presentation.common.RecyclerTouchListener
+import com.c0de_h0ng.myapplication.presentation.common.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener {
 
     override val layoutRes: Int
         get() = R.layout.activity_main
 
     private val viewModel by viewModel<MainViewModel>()
+
+    override fun bindingProperty() {
+        binding.listTouch = this
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +46,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     it -> showLoadingDialog()
                     else -> hideLoadingDialog()
                 }
+            }
+        }
+    }
+
+    override fun onClickItem(v: View, position: Int) {
+        if (v.id == R.id.api_user_item) {
+            val adapter = binding.userListAdapter
+            adapter?.let { listAdapter ->
+                val user = listAdapter.getList(position)
+
             }
         }
     }
