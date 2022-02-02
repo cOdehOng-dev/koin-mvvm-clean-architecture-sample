@@ -11,6 +11,7 @@ import io.reactivex.Flowable
 interface SampleRepository {
 
     fun getUserList(searchWord: String): Flowable<List<User>>
+    fun searchBookmark(searchUser: String): Flowable<List<BookmarkUser>>
     fun insertBookmark(bookmarkUser: BookmarkUser): Completable
     fun getBookmarkUserList(): Flowable<List<BookmarkUser>>
     fun deleteBookmark(bookmarkUser: BookmarkUser): Completable

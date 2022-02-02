@@ -25,6 +25,12 @@ class SampleRepositoryImpl constructor(
         }
     }
 
+    override fun searchBookmark(searchUser: String): Flowable<List<BookmarkUser>> {
+        return local.searchBookmark(searchUser).flatMap {
+            Flowable.just(mapperToBookmark(it))
+        }
+    }
+
     override fun insertBookmark(bookmarkUser: BookmarkUser): Completable {
         return local.insertBookmark(bookmarkUser.toBookmarkEntity())
     }
