@@ -1,4 +1,4 @@
-package com.c0de_h0ng.presentation.presentation
+package com.c0de_h0ng.myapplication.presentation
 
 import android.util.Log
 import androidx.lifecycle.LiveData

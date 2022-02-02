@@ -1,4 +1,4 @@
-package com.c0de_h0ng.presentation.presentation.common.base
+package com.c0de_h0ng.myapplication.presentation.common.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

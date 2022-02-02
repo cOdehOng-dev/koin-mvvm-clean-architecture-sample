@@ -1,4 +1,4 @@
-package com.c0de_h0ng.presentation.presentation
+package com.c0de_h0ng.myapplication.presentation
 
 import android.view.ViewGroup
 import com.c0de_h0ng.domain.model.User
@@ -14,7 +14,7 @@ class InfiniteViewPagerAdapter constructor(
     itemListOriginal: List<User>
 ) : BaseInfiniteViewPager2Adapter<User>(itemListOriginal) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): com.c0de_h0ng.presentation.presentation.InfiniteViewPagerAdapter.InfiniteViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfiniteViewHolder {
         return InfiniteViewHolder(parent)
     }
 

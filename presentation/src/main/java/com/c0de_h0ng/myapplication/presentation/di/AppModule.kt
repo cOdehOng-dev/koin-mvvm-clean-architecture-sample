@@ -1,4 +1,4 @@
-package com.c0de_h0ng.presentation.presentation.di
+package com.c0de_h0ng.myapplication.presentation.di
 
 import androidx.room.Room
 import com.c0de_h0ng.data.datasource.SampleLocalDataSource

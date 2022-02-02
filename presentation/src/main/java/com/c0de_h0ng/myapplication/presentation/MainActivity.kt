@@ -1,4 +1,4 @@
-package com.c0de_h0ng.presentation.presentation
+package com.c0de_h0ng.myapplication.presentation
 
 import android.os.Bundle
 import android.util.Log
@@ -27,7 +27,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 binding.run {
                     vm = this@with
                     userListAdapter = UserListAdapter()
-                    viewPager2.setAdapter(com.c0de_h0ng.presentation.presentation.InfiniteViewPagerAdapter(it))
+                    viewPager2.setAdapter(InfiniteViewPagerAdapter(it))
                 }
             }
 

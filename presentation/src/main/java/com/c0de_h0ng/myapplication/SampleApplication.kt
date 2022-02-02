@@ -1,4 +1,4 @@
-package com.c0de_h0ng.presentation
+package com.c0de_h0ng.myapplication
 
 import android.app.Application
 import com.c0de_h0ng.myapplication.di.*

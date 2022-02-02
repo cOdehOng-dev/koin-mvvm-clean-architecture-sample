@@ -1,4 +1,4 @@
-package com.c0de_h0ng.presentation.presentation.common
+package com.c0de_h0ng.myapplication.presentation.common
 
 import android.view.MotionEvent
 import androidx.recyclerview.widget.RecyclerView

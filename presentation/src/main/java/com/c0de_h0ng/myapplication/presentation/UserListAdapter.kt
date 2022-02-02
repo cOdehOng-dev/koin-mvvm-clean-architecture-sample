@@ -1,4 +1,4 @@
-package com.c0de_h0ng.presentation.presentation
+package com.c0de_h0ng.myapplication.presentation
 
 import android.view.ViewGroup
 import com.c0de_h0ng.domain.model.User

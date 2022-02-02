@@ -1,4 +1,4 @@
-package com.c0de_h0ng.presentation.presentation.common.base.adapter
+package com.c0de_h0ng.myapplication.presentation.common.base.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 
