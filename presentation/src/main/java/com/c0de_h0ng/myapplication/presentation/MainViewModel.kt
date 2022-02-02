@@ -8,6 +8,7 @@ import com.c0de_h0ng.domain.model.User
 import com.c0de_h0ng.domain.usecase.CallResult
 import com.c0de_h0ng.domain.usecase.GetBookmarkUserListUseCase
 import com.c0de_h0ng.domain.usecase.GetUserListUseCase
+import com.c0de_h0ng.domain.usecase.InsertBookmarkUseCase
 import com.c0de_h0ng.myapplication.presentation.common.base.BaseViewModel
 
 /**
@@ -15,7 +16,8 @@ import com.c0de_h0ng.myapplication.presentation.common.base.BaseViewModel
  */
 class MainViewModel constructor(
     private val getUserListUseCase: GetUserListUseCase,
-    private val getBookmarkUserListUseCase: GetBookmarkUserListUseCase
+    private val getBookmarkUserListUseCase: GetBookmarkUserListUseCase,
+    private val insertBookmarkUseCase: InsertBookmarkUseCase
 ) : BaseViewModel() {
 
     private val _userList = MediatorLiveData<List<User>>()
@@ -26,8 +28,16 @@ class MainViewModel constructor(
     val bookmarkList: LiveData<List<BookmarkUser>>
         get() = _bookmarkList
 
+    private val _insertBookmark = MediatorLiveData<Boolean>().apply {
+        value = false
+    }
+    val insertBookmark: LiveData<Boolean>
+        get() = _insertBookmark
+
+
     private val userListResultObserve = getUserListUseCase.observe()
     private val bookmarkListResultObserve = getBookmarkUserListUseCase.observe()
+    private val insertBookmarkObserve = insertBookmarkUseCase.observe()
 
     fun getUserListResult(searchWord: String) {
         this(getUserListUseCase(searchWord))
@@ -54,6 +64,24 @@ class MainViewModel constructor(
                 is CallResult.Success -> {
                     val user = it.data
                     _bookmarkList.value = user!!
+                    Log.d("GetBookmarkList", user.count().toString())
+                }
+                is CallResult.Error -> {
+                    Log.d("Resource >>> ", "Fail")
+                }
+                is CallResult.Loading -> {
+                    loadingProgress(it.isLoading)
+                }
+            }
+        }
+    }
+
+    fun insertBookmark(bookmarkUser: BookmarkUser) {
+        this(insertBookmarkUseCase(bookmarkUser))
+        _insertBookmark.addSource(insertBookmarkObserve) {
+            when (it) {
+                is CallResult.Success -> {
+                    _insertBookmark.value = it.data
                 }
                 is CallResult.Error -> {
                     Log.d("Resource >>> ", "Fail")

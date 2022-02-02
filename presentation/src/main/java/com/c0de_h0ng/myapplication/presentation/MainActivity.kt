@@ -3,6 +3,7 @@ package com.c0de_h0ng.myapplication.presentation
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.c0de_h0ng.domain.model.toBookmarkUser
 import com.c0de_h0ng.myapplication.R
 import com.c0de_h0ng.myapplication.databinding.ActivityMainBinding
 import com.c0de_h0ng.myapplication.presentation.common.RecyclerTouchListener
@@ -41,6 +42,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener 
                 Log.d("Bookmark size ", it.size.toString())
             }
 
+            insertBookmark.observe(this@MainActivity) {
+                Log.d("Insert After Result ", it.toString())
+            }
+
             isLoadingObservable.observe(this@MainActivity) {
                 when {
                     it -> showLoadingDialog()
@@ -55,7 +60,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener 
             val adapter = binding.userListAdapter
             adapter?.let { listAdapter ->
                 val user = listAdapter.getList(position)
-
+                viewModel.insertBookmark(user.toBookmarkUser())
             }
         }
     }

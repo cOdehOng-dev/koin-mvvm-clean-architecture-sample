@@ -15,3 +15,12 @@ data class User(
     val reposUrl: String
 ) : Parcelable
 
+fun User.toBookmarkUser(): BookmarkUser {
+    return BookmarkUser(
+        id = id.toLong(),
+        name = login,
+        profileUrl = profileUrl,
+        isBookmark = false
+    )
+}
+
