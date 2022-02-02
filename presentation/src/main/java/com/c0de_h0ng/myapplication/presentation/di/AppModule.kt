@@ -12,6 +12,7 @@ import com.c0de_h0ng.domain.repository.SampleRepository
 import com.c0de_h0ng.domain.usecase.GetBookmarkUserListUseCase
 import com.c0de_h0ng.domain.usecase.GetUserListUseCase
 import com.c0de_h0ng.domain.usecase.InsertBookmarkUseCase
+import com.c0de_h0ng.domain.usecase.SearchBookmarkUseCase
 import com.c0de_h0ng.myapplication.presentation.MainViewModel
 import com.c0de_h0ng.myapplication.presentation.common.Constants
 import com.c0de_h0ng.myapplication.presentation.common.PrettyHttpLogging
@@ -85,9 +86,10 @@ object AppModule {
         single { GetUserListUseCase(get()) }
         single { GetBookmarkUserListUseCase(get()) }
         single { InsertBookmarkUseCase(get()) }
+        single { SearchBookmarkUseCase(get()) }
     }
 
     val viewModelModule = module {
-        viewModel { MainViewModel(get(), get(), get()) }
+        viewModel { MainViewModel(get(), get(), get(), get()) }
     }
 }

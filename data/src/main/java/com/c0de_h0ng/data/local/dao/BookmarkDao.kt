@@ -17,7 +17,6 @@ interface BookmarkDao {
     @Query("SELECT * FROM tbl_bookmark_user WHERE name LIKE :searchUser")
     fun searchBookmark(searchUser: String): Flowable<List<BookmarkDto>>
 
-    // TODO Flowalbe로 수정하기
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(bookmark: BookmarkDto): Completable
 

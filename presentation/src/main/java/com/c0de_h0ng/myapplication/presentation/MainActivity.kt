@@ -52,6 +52,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener 
                     else -> hideLoadingDialog()
                 }
             }
+            searchList.observe(this@MainActivity) {
+                hideLoadingDialog()
+                Log.d("Search After Result ", it.toString())
+            }
         }
     }
 
@@ -60,7 +64,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener 
             val adapter = binding.userListAdapter
             adapter?.let { listAdapter ->
                 val user = listAdapter.getList(position)
-                viewModel.insertBookmark(user.toBookmarkUser())
+                val bookmarkName = user.toBookmarkUser().name
+                viewModel.searchBookmark(bookmarkName)
+                //viewModel.insertBookmark(user.toBookmarkUser())
             }
         }
     }

@@ -5,10 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.c0de_h0ng.domain.model.BookmarkUser
 import com.c0de_h0ng.domain.model.User
-import com.c0de_h0ng.domain.usecase.CallResult
-import com.c0de_h0ng.domain.usecase.GetBookmarkUserListUseCase
-import com.c0de_h0ng.domain.usecase.GetUserListUseCase
-import com.c0de_h0ng.domain.usecase.InsertBookmarkUseCase
+import com.c0de_h0ng.domain.usecase.*
 import com.c0de_h0ng.myapplication.presentation.common.base.BaseViewModel
 
 /**
@@ -17,7 +14,8 @@ import com.c0de_h0ng.myapplication.presentation.common.base.BaseViewModel
 class MainViewModel constructor(
     private val getUserListUseCase: GetUserListUseCase,
     private val getBookmarkUserListUseCase: GetBookmarkUserListUseCase,
-    private val insertBookmarkUseCase: InsertBookmarkUseCase
+    private val insertBookmarkUseCase: InsertBookmarkUseCase,
+    private val searchBookmarkUseCase: SearchBookmarkUseCase
 ) : BaseViewModel() {
 
     private val _userList = MediatorLiveData<List<User>>()
@@ -34,10 +32,15 @@ class MainViewModel constructor(
     val insertBookmark: LiveData<Boolean>
         get() = _insertBookmark
 
+    private val _searchList = MediatorLiveData<List<BookmarkUser>>()
+    val searchList: LiveData<List<BookmarkUser>>
+        get() = _searchList
+
 
     private val userListResultObserve = getUserListUseCase.observe()
     private val bookmarkListResultObserve = getBookmarkUserListUseCase.observe()
     private val insertBookmarkObserve = insertBookmarkUseCase.observe()
+    private val searchListObserve = searchBookmarkUseCase.observe()
 
     fun getUserListResult(searchWord: String) {
         this(getUserListUseCase(searchWord))
@@ -58,7 +61,7 @@ class MainViewModel constructor(
     }
 
     fun getBookmarkUserList() {
-        this(getBookmarkUserListUseCase())
+        this(getBookmarkUserListUseCase(Unit))
         _bookmarkList.addSource(bookmarkListResultObserve) {
             when (it) {
                 is CallResult.Success -> {
@@ -91,6 +94,26 @@ class MainViewModel constructor(
                 }
             }
         }
+    }
+
+    fun searchBookmark(search: String) {
+        this(searchBookmarkUseCase(search))
+        _searchList.addSource(searchListObserve) {
+            when (it) {
+                is CallResult.Success -> {
+                    val user = it.data
+                    _searchList.value = user!!
+                    Log.d("SearchBookmarkList", user.count().toString())
+                }
+                is CallResult.Error -> {
+                    Log.d("Resource >>> ", "Fail")
+                }
+                is CallResult.Loading -> {
+                    loadingProgress(it.isLoading)
+                }
+            }
+        }
+
     }
 
 }
