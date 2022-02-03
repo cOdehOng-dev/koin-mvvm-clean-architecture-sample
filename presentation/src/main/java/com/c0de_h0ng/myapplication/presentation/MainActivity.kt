@@ -23,6 +23,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener,
 
     private val userAdapter = UserListAdapter()
 
+    private val infiniteViewPagerAdapter = InfiniteViewPagerAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observeViewModel()
@@ -32,8 +34,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener,
     }
 
     private fun setAdapter() {
-
         binding.userRecyclerView.adapter = userAdapter
+        //binding.viewPager2.setAdapter(infiniteViewPagerAdapter)
     }
 
     private fun observeViewModel() {
@@ -45,9 +47,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener,
 
                     userAdapter.submitList(it)
 
-
-
-                    viewPager2.setAdapter(InfiniteViewPagerAdapter(it))
+                    infiniteViewPagerAdapter.submitList(it)
+                    binding.viewPager2.setAdapter(infiniteViewPagerAdapter)
                 }
             }
 

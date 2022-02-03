@@ -38,10 +38,6 @@ class UserListAdapter : BaseListAdapter<User>(UserDiffCallback()) {
 
         override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
             return oldItem == newItem
-//            return oldItem.id == newItem.id
-//                    && oldItem.htmlUrl == newItem.htmlUrl
-//                    && oldItem.profileUrl == newItem.profileUrl
-//                    && oldItem.reposUrl == newItem.reposUrl
         }
 
     }

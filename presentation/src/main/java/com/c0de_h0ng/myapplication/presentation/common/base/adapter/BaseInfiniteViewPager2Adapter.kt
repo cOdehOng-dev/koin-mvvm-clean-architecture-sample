@@ -9,8 +9,6 @@ abstract class BaseInfiniteViewPager2Adapter<T> constructor(
     itemListOriginal: List<T>
 ) : RecyclerView.Adapter<BaseViewHolder<T, *>>() {
 
-    //protected var itemListOriginal: MutableList<T> = mutableListOf()
-
     private val itemList: List<T> = listOf(itemListOriginal.last()) + itemListOriginal + listOf(itemListOriginal.first())
 
     override fun onBindViewHolder(holder: BaseViewHolder<T, *>, position: Int) {
@@ -18,15 +16,5 @@ abstract class BaseInfiniteViewPager2Adapter<T> constructor(
     }
 
     override fun getItemCount(): Int = itemList.count()
-
-//    fun addAll(data: List<T>?) {
-//        if (data == null) {
-//            return
-//        }
-//
-//        val startIndex = itemListOriginal.size
-//        itemListOriginal.addAll(startIndex, data)
-//        notifyItemRangeInserted(startIndex, data.size)
-//    }
 
 }
