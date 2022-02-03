@@ -9,6 +9,10 @@
         <variable
             name="listTouch"
             type="com.c0de_h0ng.myapplication.presentation.common.RecyclerTouchListener" />
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -43,9 +47,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:scrollbars="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                recycler_view_adapter="@{userListAdapter}"
-                list_data="@{vm.userList}"
-                touch="@{listTouch}"/>
+                touch="@{listTouch}"
+                />
+
+            <!--setUserItems="@{vm.userList}"-->
+            <!--touch="@{listTouch}"-->
+            <!--recycler_view_adapter="@{userListAdapter}"-->
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

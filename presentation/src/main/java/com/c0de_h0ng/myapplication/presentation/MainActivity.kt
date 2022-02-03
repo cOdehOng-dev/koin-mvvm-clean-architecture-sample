@@ -3,14 +3,13 @@ package com.c0de_h0ng.myapplication.presentation
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.c0de_h0ng.domain.model.toBookmarkUser
 import com.c0de_h0ng.myapplication.R
 import com.c0de_h0ng.myapplication.databinding.ActivityMainBinding
 import com.c0de_h0ng.myapplication.presentation.common.RecyclerTouchListener
 import com.c0de_h0ng.myapplication.presentation.common.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener {
+class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener, View.OnClickListener {
 
     override val layoutRes: Int
         get() = R.layout.activity_main
@@ -19,21 +18,35 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener 
 
     override fun bindingProperty() {
         binding.listTouch = this
+        binding.onClick = this
     }
+
+    private val userAdapter = UserListAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observeViewModel()
+        setAdapter()
         viewModel.getUserListResult("mike")
         viewModel.getBookmarkUserList()
+    }
+
+    private fun setAdapter() {
+
+        binding.userRecyclerView.adapter = userAdapter
     }
 
     private fun observeViewModel() {
         with(viewModel) {
             userList.observe(this@MainActivity) {
                 binding.run {
-                    vm = this@with
-                    userListAdapter = UserListAdapter()
+                    //vm = this@with
+
+
+                    userAdapter.submitList(it)
+
+
+
                     viewPager2.setAdapter(InfiniteViewPagerAdapter(it))
                 }
             }
@@ -63,12 +76,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener 
         if (v.id == R.id.api_user_item) {
             val adapter = binding.userListAdapter
             adapter?.let { listAdapter ->
-                val user = listAdapter.getList(position)
-                val bookmarkName = user.toBookmarkUser().name
-                viewModel.searchBookmark(bookmarkName)
+                val user = listAdapter.currentList[position]
+                Log.d("ListClick", user.login)
+
+
+
+//                val bookmarkName = user.toBookmarkUser().name
+//                viewModel.searchBookmark(bookmarkName)
                 //viewModel.insertBookmark(user.toBookmarkUser())
             }
         }
+
+    }
+
+    override fun onClick(v: View?) {
+
     }
 
 }
