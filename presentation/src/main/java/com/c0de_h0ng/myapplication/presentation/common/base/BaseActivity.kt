@@ -10,6 +10,7 @@ import com.c0de_h0ng.myapplication.presentation.common.Constants.PROGRESS_DIALOG
 
 /**
  * Created by c0de_h0ng on 2022/01/31.
+ * https://imleaf.tistory.com/83 -> 라이브러리 제작
  */
 abstract class BaseActivity<VD : ViewDataBinding> : AppCompatActivity() {
 
