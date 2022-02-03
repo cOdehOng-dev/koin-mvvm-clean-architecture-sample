@@ -19,4 +19,8 @@ abstract class BaseViewHolder<T, B: ViewDataBinding> constructor(
 
     abstract fun bind(data: T)
 
+    fun unbind() {
+        binding.unbind()
+    }
+
 }
