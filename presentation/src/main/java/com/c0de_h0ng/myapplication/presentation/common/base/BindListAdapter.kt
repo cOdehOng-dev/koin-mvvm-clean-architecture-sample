@@ -25,7 +25,9 @@ fun bindRecyclerViewAdapter(view: RecyclerView, listAdapter: BaseListAdapter<*>?
     listAdapter?.let { adapter ->
         view.adapter = adapter
         adapter.submitList(list?.toMutableList() ?: emptyList())
-        //adapter.addAll(list)
     }
     recyclerTouchListener?.let { view.addOnItemTouchListener(RecyclerItemListener(view, it)) }
 }
+
+//@BindingAdapter(value = ["view_pager_adapter", "list", "touch"], requireAll = false)
+//fun bindInfiniteViewPager(viewPager: ViewPager2)

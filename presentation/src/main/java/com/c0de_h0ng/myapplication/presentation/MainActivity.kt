@@ -40,12 +40,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), RecyclerTouchListener,
 
     private fun observeViewModel() {
         with(viewModel) {
+            //binding.vm = this
             userList.observe(this@MainActivity) {
                 binding.run {
                     //vm = this@with
-
-
                     userAdapter.submitList(it)
+
+
 
                     infiniteViewPagerAdapter.submitList(it)
                     binding.viewPager2.setAdapter(infiniteViewPagerAdapter)

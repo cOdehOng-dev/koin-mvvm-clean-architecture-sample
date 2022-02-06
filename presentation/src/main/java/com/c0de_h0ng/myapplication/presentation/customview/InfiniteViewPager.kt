@@ -11,10 +11,10 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.c0de_h0ng.myapplication.R
+import kotlin.math.abs
 
 /**
  * Created by c0de_h0ng on 2022/02/01.
- * https://imleaf.tistory.com/83 -> 라이브러리 배포 방법
  */
 class InfiniteViewPager @JvmOverloads constructor(
     context: Context,
@@ -42,7 +42,7 @@ class InfiniteViewPager @JvmOverloads constructor(
         compositePageTransformer.run {
             addTransformer { page, position ->
                 MarginPageTransformer(30)
-                val r = 1 - Math.abs(position)
+                val r = 1 - abs(position)
                 page.scaleY = 0.85f + r * 0.15f
             }
         }
